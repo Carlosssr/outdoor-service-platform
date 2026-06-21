@@ -4,12 +4,12 @@ export const SEED_LEADS = [
     name: 'Santa Ynez Ranch Property',
     contact: 'J. Morales',
     location: 'Santa Ynez',
-    service: 'Acreage Land Clearing & Fire Break',
+    service: 'Lot Clearing',
     estimatedValue: 38000,
     source: 'Word of Mouth / Referral',
     status: 'New',
     date: '2026-06-15',
-    notes: 'Large parcel, approximately 40 acres. Needs full fire break perimeter and clearing.',
+    notes: 'Large parcel, approximately 40 acres. Full lot clearing and site prep before development.',
     highValue: true,
   },
   {
@@ -17,12 +17,12 @@ export const SEED_LEADS = [
     name: 'Vandenberg Village Home',
     contact: 'R. Thompson',
     location: 'Vandenberg Village',
-    service: 'Smart Irrigation Upgrade',
+    service: 'Irrigation System Installation & Repair',
     estimatedValue: 14500,
     source: 'Local SEO',
     status: 'Contacted',
     date: '2026-06-18',
-    notes: 'Converting aging sprinkler system to drip with smart controller.',
+    notes: 'Converting aging sprinkler system to drip with smart controller. Front and back yard.',
     highValue: true,
   },
 ];
@@ -30,27 +30,27 @@ export const SEED_LEADS = [
 export const SEED_PROJECTS = [
   {
     id: 'proj-001',
-    name: 'Lompoc Proper Tree Removal',
+    name: 'Lompoc Proper Brush Removal',
     location: 'Lompoc',
-    segment: 'Tree Care & Windbreak',
+    segment: 'Brush & Debris Removal',
     crew: 'Crew Alpha',
     status: 'In Progress',
     startDate: '2026-06-10',
     endDate: '2026-06-25',
     value: 9800,
-    notes: 'Removing 3 hazard eucalyptus trees, windbreak trim along north fence.',
+    notes: 'Full brush clearing along north and east fence lines. Haul-off included.',
   },
   {
     id: 'proj-002',
-    name: 'Solvang Estate Landscape',
+    name: 'Solvang Estate Fencing & Grading',
     location: 'Solvang',
-    segment: 'Landscape Design & Hardscape',
+    segment: 'Fencing Installation & Repairs',
     crew: 'Crew Gold',
     status: 'Scheduled',
     startDate: '2026-07-01',
     endDate: '2026-08-15',
     value: 42000,
-    notes: 'Full hardscape redesign with flagstone patio, fire pit, and native plantings.',
+    notes: 'Ranch rail perimeter fence + site grading for new lawn area. Large estate property.',
   },
 ];
 
@@ -77,8 +77,8 @@ export const REGIONAL_ZONES = [
   },
   {
     id: 'zone-03',
-    name: 'Lompoc Valley Commercial & Residential',
-    subtext: 'Lompoc Proper, Vandenberg AFB perimeter',
+    name: 'Lompoc Valley',
+    subtext: 'Lompoc Proper, surrounding rural areas',
     leads: 31,
     revenue: 198000,
     avgContract: 6387,
@@ -118,23 +118,33 @@ export const LOCATION_OPTIONS = [
 ];
 
 export const SERVICE_OPTIONS = [
-  'Tree Care & Windbreak Maintenance',
-  'Smart Irrigation & Water Management',
-  'Landscape Design & Hardscaping',
-  'Acreage Land Clearing',
-  'Fire Defensible Space',
+  'Ground Leveling & Site Grading',
+  'Irrigation System Installation & Repair',
+  'Fencing Installation & Repairs',
+  'Land & Landscape Cleanup',
+  'Brush & Debris Removal',
+  'Property Maintenance',
+  'Lot Clearing',
+  'Drainage Solutions',
+  'General Outdoor Improvements',
   'Other / Not Sure',
 ];
 
 export const CREWS = ['Crew Alpha', 'Crew Beta', 'Crew Gold', 'Crew Sierra', 'Owner / Field Lead'];
 
 export const SEGMENT_TYPES = [
-  'Tree Care & Windbreak',
-  'Smart Irrigation',
-  'Landscape Design & Hardscape',
-  'Acreage Land Clearing',
-  'Fire Defensible Space',
-  'Ranch Land Clearing',
+  'Ground Leveling & Site Grading',
+  'Irrigation System Installation & Repair',
+  'Fencing Installation & Repairs',
+  'Land & Landscape Cleanup',
+  'Brush & Debris Removal',
+  'Property Maintenance',
+  'Lot Clearing',
+  'Drainage Solutions',
+  'General Outdoor Improvements',
 ];
 
-export const HIGH_VALUE_LOCATIONS = ['Santa Ynez', 'Solvang', 'Buellton', 'Los Olivos', 'Vandenberg Village', 'Mission Hills', 'Surrounding Rural Areas'];
+export const HIGH_VALUE_LOCATIONS = [
+  'Santa Ynez', 'Solvang', 'Buellton', 'Los Olivos',
+  'Vandenberg Village', 'Mission Hills', 'Surrounding Rural Areas',
+];

@@ -35,7 +35,7 @@ export default function AnalyticsView() {
           <Target size={18} className="text-forest" />
           <div>
             <h3 className="font-semibold text-charcoal">Regional Target Zones</h3>
-            <p className="text-xs text-gray-400">Priority breakdown by territory</p>
+            <p className="text-xs text-gray-400">Priority breakdown by service territory</p>
           </div>
         </div>
         <div className="overflow-x-auto">
@@ -144,8 +144,8 @@ export default function AnalyticsView() {
         <div className="p-6 max-w-xl">
           <div className="mb-6">
             <div className="flex justify-between text-sm font-medium mb-1">
-              <span className="text-charcoal">Residential Landscaping</span>
-              <span className="text-charcoal">Ranch & Fire Mitigation</span>
+              <span className="text-charcoal">Residential Maintenance</span>
+              <span className="text-charcoal">Agricultural & Land Prep</span>
             </div>
             <div className="flex justify-between text-xs text-gray-400 mb-4">
               <span>{100 - sliderVal}%</span>
@@ -178,12 +178,12 @@ export default function AnalyticsView() {
             <div className="bg-forest/5 rounded-xl p-4">
               <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Residential</div>
               <div className="text-2xl font-bold text-forest font-serif">{100 - sliderVal}%</div>
-              <div className="text-xs text-gray-400 mt-1">Landscaping, hardscape, irrigation</div>
+              <div className="text-xs text-gray-400 mt-1">Irrigation, fencing, cleanup, drainage</div>
             </div>
             <div className="bg-harvest/5 rounded-xl p-4">
-              <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Ranch / Fire</div>
+              <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Ag / Land Prep</div>
               <div className="text-2xl font-bold text-harvest font-serif">{sliderVal}%</div>
-              <div className="text-xs text-gray-400 mt-1">Clearing, fire breaks, acreage work</div>
+              <div className="text-xs text-gray-400 mt-1">Grading, lot clearing, acreage work</div>
             </div>
           </div>
 

@@ -2,56 +2,88 @@ import { useState } from 'react';
 import ClientNav from '../components/ClientNav';
 import LeadCaptureModal from '../components/LeadCaptureModal';
 import {
-  Trees, Droplets, Layers, Flame, Star, ChevronLeft, ChevronRight,
-  MapPin, Phone, Mail, Shield, Award, Users, CheckCircle
+  Shovel, Droplets, Fence, Leaf, Trash2, Star, ChevronLeft, ChevronRight,
+  MapPin, Phone, Mail, Shield, Award, Users, CheckCircle, Waves, Wrench, LayoutGrid
 } from 'lucide-react';
 
 const testimonials = [];
 
 const services = [
   {
-    icon: <Trees size={28} />,
-    title: 'Tree Care & Windbreak Maintenance',
-    license: 'D-49 Licensed',
-    color: 'bg-green-50 text-forest',
-    desc: 'Expert tree removal, crown reduction, and hazard assessment across the valley. We specialize in heavy-wind mitigation, oak tree preservation, and insurance-approved wildfire defensible space creation for ranches and estates.',
-    features: ['Hazard tree removal & risk assessment', 'Oak tree preservation & health care', 'Fire defensible space (CAL FIRE compliant)', 'Windbreak trimming & shaping'],
+    icon: <Shovel size={28} />,
+    title: 'Ground Leveling & Site Grading',
+    tag: 'Residential · Agricultural · Commercial',
+    color: 'bg-amber-50 text-amber-800',
+    desc: 'Proper grading is the foundation of every successful outdoor project. We level uneven terrain, correct drainage slopes, and prepare sites for construction, landscaping, planting, or hardscaping — on properties of any size.',
+    features: ['Rough & finish grading', 'Slope correction & terracing', 'Site prep for construction or planting', 'Drainage swale shaping'],
   },
   {
     icon: <Droplets size={28} />,
-    title: 'Smart Irrigation & Rural Water Management',
-    license: 'Certified Installation',
+    title: 'Irrigation System Installation & Repair',
+    tag: 'New Systems · Repairs · Upgrades',
     color: 'bg-blue-50 text-blue-700',
-    desc: 'Water-wise solutions built for the Central Coast\'s unique conditions. From large ranch irrigation networks to residential smart controllers, we help you conserve water, cut costs, and keep your landscape thriving through every drought cycle.',
-    features: ['Drip & micro-irrigation systems', 'Smart controller installation', 'Ranch & acreage irrigation design', 'Drought-tolerant planting plans'],
+    desc: 'From new installs to aging system repairs, we design and service irrigation systems for residential yards, agricultural parcels, and commercial grounds. Water smarter, reduce waste, and keep your property healthy year-round.',
+    features: ['Full system design & installation', 'Sprinkler & drip system repair', 'Controller & valve upgrades', 'Agricultural & large-lot irrigation'],
   },
   {
-    icon: <Layers size={28} />,
-    title: 'Landscape Design & Hardscaping',
-    license: 'C-27 Licensed',
-    color: 'bg-amber-50 text-amber-700',
-    desc: 'From intimate family patios to sweeping estate redesigns, we craft outdoor living spaces that honor the natural beauty of the Santa Ynez Valley. Every project blends premium materials with regionally appropriate, low-maintenance plantings.',
-    features: ['Custom patio & outdoor living design', 'Flagstone, brick & concrete work', 'Native plant & drought-tolerant design', 'Fire pits, walls & water features'],
+    icon: <Fence size={28} />,
+    title: 'Fencing Installation & Repairs',
+    tag: 'Wood · Chain Link · Ranch Rail',
+    color: 'bg-green-50 text-forest',
+    desc: 'We install and repair fencing for residential properties, ranches, and commercial sites. Whether you need a clean wood privacy fence, a ranch rail perimeter, or chain link for a commercial lot — we build it right and built to last.',
+    features: ['Wood privacy & picket fencing', 'Ranch rail & split rail fencing', 'Chain link installation & repair', 'Post replacement & fence restoration'],
   },
   {
-    icon: <Flame size={28} />,
-    title: 'Acreage Land Clearing',
-    license: 'Large Property Specialists',
+    icon: <Leaf size={28} />,
+    title: 'Land & Landscape Cleanup',
+    tag: 'One-Time · Seasonal · Ongoing',
+    color: 'bg-emerald-50 text-emerald-800',
+    desc: 'A clean property is a healthy property. We handle comprehensive land and landscape cleanups — from overgrown yards and weedy lots to post-storm debris and seasonal maintenance — leaving your grounds looking sharp and well-kept.',
+    features: ['Overgrown yard cleanup & reset', 'Weed removal & bare-ground prep', 'Post-storm debris clearance', 'Seasonal maintenance visits'],
+  },
+  {
+    icon: <Trash2 size={28} />,
+    title: 'Brush & Debris Removal',
+    tag: 'Fire Safety · Lot Clearing · Haul-Off',
     color: 'bg-orange-50 text-orange-700',
-    desc: 'Purpose-built for the valley\'s large parcels. We handle full land clearing, brush removal, fire break creation, and access road clearing. Trusted by ranchers, vineyard owners, and land developers throughout Santa Barbara County.',
-    features: ['Full acreage clearing & grubbing', 'Firebreak installation & maintenance', 'Brush pile removal & chipping', 'Access road & fence line clearing'],
+    desc: 'Overgrown brush is a fire hazard, an eyesore, and a barrier to using your land. We clear brush, pile debris, chip where appropriate, and haul everything off — leaving your property clean, accessible, and safer.',
+    features: ['Brush cutting & clearing', 'Pile removal & haul-off', 'Chipping & on-site mulching', 'Fire hazard reduction clearing'],
+  },
+  {
+    icon: <Wrench size={28} />,
+    title: 'Property Maintenance',
+    tag: 'Ongoing · Scheduled · On-Call',
+    color: 'bg-slate-50 text-slate-700',
+    desc: 'Keep your property in top condition without the hassle. We offer scheduled maintenance programs for residential, agricultural, and commercial properties — so your land stays clean, functional, and well-maintained every season.',
+    features: ['Scheduled maintenance programs', 'Mowing, edging & trimming', 'Irrigation system checks', 'General upkeep & small repairs'],
+  },
+  {
+    icon: <LayoutGrid size={28} />,
+    title: 'Lot Clearing',
+    tag: 'Vacant Lots · Acreage · Development Prep',
+    color: 'bg-rose-50 text-rose-700',
+    desc: 'Ready to use your land? We clear vacant lots, raw acreage, and development sites — removing brush, debris, overgrowth, and obstacles so the land is clean, level-ready, and prepared for whatever comes next.',
+    features: ['Vacant lot full clearing', 'Raw acreage preparation', 'Stump & root removal', 'Pre-development site clearing'],
+  },
+  {
+    icon: <Waves size={28} />,
+    title: 'Drainage Solutions',
+    tag: 'French Drains · Swales · Runoff Control',
+    color: 'bg-cyan-50 text-cyan-700',
+    desc: 'Poor drainage causes erosion, flooding, and long-term property damage. We assess your drainage problems and install effective solutions — including French drains, surface swales, and grading corrections — to move water away from where it hurts.',
+    features: ['French drain installation', 'Surface & channel drains', 'Grading for water diversion', 'Erosion control measures'],
   },
 ];
 
 const galleryItems = [
-  { id: 1, region: 'Lompoc Valley', label: 'Windbreak Maintenance', category: 'lompoc', img: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80', desc: 'Full windbreak restoration along rural fence line' },
-  { id: 2, region: 'Santa Ynez Valley', label: 'Ranch Land Clearing', category: 'santa-ynez', img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=80', desc: '40-acre fire break and clearing project' },
-  { id: 3, region: 'Vandenberg Village', label: 'Smart Irrigation', category: 'vandenberg', img: 'https://images.unsplash.com/photo-1585320806297-9794b3e4aaae?w=600&q=80', desc: 'Residential drip conversion with smart controller' },
-  { id: 4, region: 'Orcutt & Santa Maria', label: 'Hardscape Patio', category: 'orcutt', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80', desc: 'Flagstone patio and native garden installation' },
-  { id: 5, region: 'Santa Ynez Valley', label: 'Oak Tree Preservation', category: 'santa-ynez', img: 'https://images.unsplash.com/photo-1540F0C65H4lGg?w=600&q=80', desc: 'Heritage oak health assessment and trimming' },
-  { id: 6, region: 'Lompoc Valley', label: 'Landscape Design', category: 'lompoc', img: 'https://images.unsplash.com/photo-1599940824399-b87987ceb72a?w=600&q=80', desc: 'Full front yard redesign with drought-tolerant plants' },
-  { id: 7, region: 'Vandenberg Village', label: 'Outdoor Living Space', category: 'vandenberg', img: 'https://images.unsplash.com/photo-1591825729269-caeb344f6df2?w=600&q=80', desc: 'Custom pergola with native plantings' },
-  { id: 8, region: 'Orcutt & Santa Maria', label: 'Acreage Clearing', category: 'orcutt', img: 'https://images.unsplash.com/photo-1439853949212-36589f288df8?w=600&q=80', desc: 'Brush removal for rural property development' },
+  { id: 1, region: 'Lompoc Valley', label: 'Site Grading & Leveling', category: 'lompoc', img: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80', desc: 'Full lot grading and slope correction' },
+  { id: 2, region: 'Santa Ynez Valley', label: 'Acreage Lot Clearing', category: 'santa-ynez', img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=80', desc: '40-acre brush clearing and land prep' },
+  { id: 3, region: 'Vandenberg Village', label: 'Irrigation Installation', category: 'vandenberg', img: 'https://images.unsplash.com/photo-1585320806297-9794b3e4aaae?w=600&q=80', desc: 'Full residential irrigation system install' },
+  { id: 4, region: 'Orcutt & Santa Maria', label: 'Fencing Installation', category: 'orcutt', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80', desc: 'Ranch rail perimeter fencing project' },
+  { id: 5, region: 'Santa Ynez Valley', label: 'Brush & Debris Removal', category: 'santa-ynez', img: 'https://images.unsplash.com/photo-1464207687429-7505649dae38?w=600&q=80', desc: 'Full parcel brush removal and haul-off' },
+  { id: 6, region: 'Lompoc Valley', label: 'Landscape Cleanup', category: 'lompoc', img: 'https://images.unsplash.com/photo-1599940824399-b87987ceb72a?w=600&q=80', desc: 'Overgrown yard reset and cleanup' },
+  { id: 7, region: 'Vandenberg Village', label: 'Drainage Solutions', category: 'vandenberg', img: 'https://images.unsplash.com/photo-1591825729269-caeb344f6df2?w=600&q=80', desc: 'French drain and surface drainage install' },
+  { id: 8, region: 'Orcutt & Santa Maria', label: 'Property Maintenance', category: 'orcutt', img: 'https://images.unsplash.com/photo-1439853949212-36589f288df8?w=600&q=80', desc: 'Ongoing commercial property maintenance' },
 ];
 
 const galleryFilters = [
@@ -64,9 +96,9 @@ const galleryFilters = [
 
 const stats = [
   { value: '15+', label: 'Years Serving the Valley' },
-  { value: 'C-27/D-49', label: 'Licensed & Insured' },
-  { value: '500+', label: 'Properties Transformed' },
-  { value: '4 Counties', label: 'Central Coast Coverage' },
+  { value: 'Licensed', label: 'Bonded & Fully Insured' },
+  { value: '500+', label: 'Properties Maintained' },
+  { value: '3 Counties', label: 'Central Coast Coverage' },
 ];
 
 export default function ClientSite() {
@@ -91,7 +123,6 @@ export default function ClientSite() {
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
         style={{ background: 'linear-gradient(160deg, #0f2a1c 0%, #1B4332 45%, #1e3a2a 100%)' }}
       >
-        {/* Background texture overlay */}
         <div className="absolute inset-0 opacity-20"
           style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
         <div className="absolute inset-0 bg-gradient-to-br from-forest/90 via-forest/75 to-harvest/20" />
@@ -99,23 +130,23 @@ export default function ClientSite() {
         <div className="relative z-10 text-center max-w-5xl mx-auto px-6 pt-20 pb-16">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 text-sm text-white/80 mb-8">
             <Shield size={14} className="text-harvest" />
-            Licensed C-27 / D-49 &nbsp;·&nbsp; Fully Insured &nbsp;·&nbsp; Family Owned
+            Family-Owned &nbsp;·&nbsp; Licensed &amp; Insured &nbsp;·&nbsp; Central Coast
           </div>
 
           <h1 className="font-serif text-5xl md:text-7xl font-bold text-white leading-tight text-balance mb-6">
-            Family-Owned &<br />
-            <span className="text-harvest">Community Trusted</span><br />
-            Outdoor Experts
+            Land Preparation &<br />
+            <span className="text-harvest">Property Improvement</span><br />
+            You Can Count On
           </h1>
 
           <p className="text-lg md:text-xl text-white/75 max-w-2xl mx-auto mb-4 leading-relaxed">
-            Proudly serving Lompoc, the Santa Ynez Valley, Vandenberg Village, and the greater Central Coast.
-            Real craftsmanship. Real relationships. Real results.
+            Grading, irrigation, fencing, lot clearing, drainage, and full property maintenance —
+            for residential, agricultural, and commercial properties across the Central Coast.
           </p>
 
           <div className="flex items-center justify-center gap-2 text-sm text-harvest font-semibold mb-10">
             <MapPin size={16} />
-            Lompoc, the Santa Ynez Valley & The Central Coast
+            Lompoc, the Santa Ynez Valley &amp; Surrounding Communities
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -126,11 +157,10 @@ export default function ClientSite() {
               Request a Free Estimate
             </button>
             <a href="#services" className="border-2 border-white/30 text-white font-semibold px-8 py-4 rounded-xl hover:bg-white/10 transition-all text-base">
-              Our Services
+              See All Services
             </a>
           </div>
 
-          {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16">
             {stats.map(s => (
               <div key={s.label} className="bg-white/8 backdrop-blur-sm border border-white/15 rounded-xl p-4 text-center">
@@ -148,18 +178,32 @@ export default function ClientSite() {
         </div>
       </section>
 
+      {/* SHORT INTRO */}
+      <section className="py-14 px-4 bg-white border-b border-gray-100">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="font-serif text-2xl md:text-3xl font-bold text-forest mb-3">
+            Land Improvement &amp; Property Maintenance
+          </h2>
+          <p className="text-gray-500 text-lg leading-relaxed">
+            We provide reliable land preparation and property improvement services for residential, agricultural, and commercial properties.
+            From ground leveling and irrigation systems to fencing installation and landscape cleanup —
+            we help keep your property functional, clean, and well-maintained.
+          </p>
+        </div>
+      </section>
+
       {/* SERVICES */}
       <section id="services" className="py-20 lg:py-28 px-4 max-w-7xl mx-auto">
         <div className="text-center mb-14">
           <div className="inline-flex items-center gap-2 bg-forest/10 text-forest text-xs font-bold px-3 py-1.5 rounded-full mb-4 tracking-wider uppercase">
-            <Award size={12} /> Our Core Services
+            <Award size={12} /> Our Services
           </div>
-          <h2 className="section-title text-center">Built for the Central Coast</h2>
+          <h2 className="section-title text-center">What We Do</h2>
           <p className="section-subtitle mx-auto text-center">
-            Every service we offer is calibrated to the unique wind, fire, water, and land conditions of our region.
+            From raw land to finished property — we handle every step of the outdoor improvement process.
           </p>
         </div>
-        <div className="grid md:grid-cols-2 gap-6 animate-stagger">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6 animate-stagger">
           {services.map((svc) => (
             <div key={svc.title} className="card hover:shadow-md transition-shadow duration-300 group">
               <div className="p-6 md:p-8">
@@ -168,7 +212,7 @@ export default function ClientSite() {
                     {svc.icon}
                   </div>
                   <div>
-                    <span className="text-[10px] font-bold text-harvest tracking-widest uppercase">{svc.license}</span>
+                    <span className="text-[10px] font-bold text-harvest tracking-widest uppercase">{svc.tag}</span>
                     <h3 className="font-serif text-xl font-bold text-forest mt-0.5">{svc.title}</h3>
                   </div>
                 </div>
@@ -200,13 +244,12 @@ export default function ClientSite() {
             <div className="inline-flex items-center gap-2 bg-harvest/10 text-harvest-dark text-xs font-bold px-3 py-1.5 rounded-full mb-4 tracking-wider uppercase">
               <MapPin size={12} /> Our Work Across the Region
             </div>
-            <h2 className="section-title text-center">Projects From Your Neighborhood</h2>
+            <h2 className="section-title text-center">Projects From Your Area</h2>
             <p className="section-subtitle mx-auto text-center">
-              Filter by sub-region to see work done right in your area.
+              Filter by sub-region to see work done right in your community.
             </p>
           </div>
 
-          {/* Filter tabs */}
           <div className="flex flex-wrap justify-center gap-2 mb-10">
             {galleryFilters.map(f => (
               <button
@@ -226,7 +269,7 @@ export default function ClientSite() {
                   src={item.img}
                   alt={item.label}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  onError={e => { e.target.src = `https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80`; }}
+                  onError={e => { e.target.src = 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80'; }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-4">
@@ -247,19 +290,19 @@ export default function ClientSite() {
             <div className="inline-flex items-center gap-2 bg-forest/10 text-forest text-xs font-bold px-3 py-1.5 rounded-full mb-6 tracking-wider uppercase">
               <Users size={12} /> Our Story
             </div>
-            <h2 className="section-title mb-5">Rooted in Lompoc. Trusted Across the Valley.</h2>
+            <h2 className="section-title mb-5">Family-Owned. Community Trusted. Built for the Central Coast.</h2>
             <p className="text-gray-500 leading-relaxed mb-4">
-              We are a family-owned outdoor services company with deep roots in the Lompoc Valley. What started as a passion for caring for the land has grown into a full-service operation trusted by homeowners, ranchers, vineyard managers, and property developers across Santa Barbara and Ventura counties.
+              We are a family-owned land preparation and property improvement company rooted in Lompoc and serving the surrounding Central Coast. We've built our reputation one property at a time — doing honest work, showing up on time, and leaving every job site better than we found it.
             </p>
             <p className="text-gray-500 leading-relaxed mb-6">
-              We understand the unique demands of the Central Coast climate — the relentless Diablo winds, the persistent drought cycles, and the wildfire risk that shapes how every property must be managed. Our licenses, our tools, and our expertise are all calibrated to this land.
+              Whether you need a vacant lot cleared, a drainage problem solved, an irrigation system installed, or ongoing property maintenance for a residential home, ranch, or commercial site — we have the equipment, the experience, and the work ethic to get it done right.
             </p>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { icon: <Shield size={16} />, label: 'Licensed C-27 & D-49' },
-                { icon: <CheckCircle size={16} />, label: 'Fully Bonded & Insured' },
+                { icon: <Shield size={16} />, label: 'Licensed & Insured' },
+                { icon: <CheckCircle size={16} />, label: 'Fully Bonded' },
                 { icon: <MapPin size={16} />, label: 'Locally Headquartered' },
-                { icon: <Award size={16} />, label: 'CAL FIRE Compliant' },
+                { icon: <Award size={16} />, label: 'Residential · Ag · Commercial' },
               ].map(item => (
                 <div key={item.label} className="flex items-center gap-2.5 text-sm font-medium text-charcoal">
                   <span className="text-harvest">{item.icon}</span>
@@ -268,14 +311,14 @@ export default function ClientSite() {
               ))}
             </div>
             <button onClick={() => setEstimateOpen(true)} className="btn-primary mt-8">
-              Work With Us
+              Request a Free Estimate
             </button>
           </div>
           <div className="relative">
             <div className="rounded-2xl overflow-hidden aspect-[4/3] shadow-xl">
               <img
                 src="https://images.unsplash.com/photo-1464207687429-7505649dae38?w=800&q=80"
-                alt="Central Coast landscape"
+                alt="Central Coast property"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -343,7 +386,7 @@ export default function ClientSite() {
         <div className="text-center">
           <h2 className="section-title mb-4">Ready to Get Started?</h2>
           <p className="section-subtitle mx-auto text-center mb-8">
-            Request your free estimate today. We'll come out, walk the property, and give you a detailed, no-obligation quote.
+            Request your free estimate today. We'll visit your property, assess the work, and give you a clear, no-obligation quote.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
             <button onClick={() => setEstimateOpen(true)} className="btn-primary px-8 py-4 text-base">
@@ -356,7 +399,7 @@ export default function ClientSite() {
           <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-gray-400">
             <span className="flex items-center gap-2"><Phone size={14} /> (805) 555-0100</span>
             <span className="flex items-center gap-2"><Mail size={14} /> hello@centralcoastoutdoor.com</span>
-            <span className="flex items-center gap-2"><MapPin size={14} /> Lompoc, CA · Serving Santa Barbara & Ventura Counties</span>
+            <span className="flex items-center gap-2"><MapPin size={14} /> Lompoc, CA · Serving the Central Coast</span>
           </div>
         </div>
       </section>
@@ -365,7 +408,7 @@ export default function ClientSite() {
       <footer className="bg-charcoal text-white/60 py-10 px-4">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
           <div className="font-serif font-bold text-white">Central Coast Outdoor Services</div>
-          <div>Lic. C-27 / D-49 · Serving Santa Barbara & Ventura Counties · Family Owned & Operated</div>
+          <div>Land Preparation &amp; Property Improvement · Licensed &amp; Insured · Family Owned</div>
           <div>© {new Date().getFullYear()} · All Rights Reserved</div>
         </div>
       </footer>
