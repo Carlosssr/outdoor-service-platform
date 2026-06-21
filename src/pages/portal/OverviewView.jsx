@@ -21,7 +21,7 @@ export default function OverviewView({ setActiveView }) {
     <div className="space-y-8 animate-fade-in">
       <div>
         <h2 className="font-serif text-2xl font-bold text-forest">Operations Overview</h2>
-        <p className="text-gray-400 text-sm mt-1">Good morning — here's a snapshot of the business.</p>
+        <p className="text-gray-400 text-sm mt-1">Good morning. Here's a snapshot of the business.</p>
       </div>
 
       <KPIRibbon />

@@ -122,7 +122,7 @@ export default function ProjectsView() {
                   {proj.endDate && <div>→ {proj.endDate}</div>}
                 </td>
                 <td className="table-td text-right font-semibold text-forest">
-                  {proj.value ? fmt(proj.value) : '—'}
+                  {proj.value ? fmt(proj.value) : 'N/A'}
                 </td>
                 <td className="table-td">
                   <div className="flex items-center gap-1">
@@ -252,7 +252,7 @@ function ProjectCard({ project, onDelete, onUpdate }) {
           <div className="font-semibold text-charcoal text-sm">{project.name}</div>
           <div className="text-xs text-gray-400 mt-0.5">{project.location} · {project.segment}</div>
         </div>
-        <div className="text-sm font-bold text-forest">{project.value ? fmtCard(project.value) : '—'}</div>
+        <div className="text-sm font-bold text-forest">{project.value ? fmtCard(project.value) : 'N/A'}</div>
       </div>
       {editing ? (
         <div className="space-y-2">

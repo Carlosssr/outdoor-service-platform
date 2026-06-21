@@ -16,7 +16,7 @@ const services = [
     title: 'Ground Leveling & Site Grading',
     tag: 'Residential · Agricultural · Commercial',
     color: 'bg-amber-50 text-amber-800',
-    desc: 'Proper grading is the foundation of every successful outdoor project. We level uneven terrain, correct drainage slopes, and prepare sites for construction, landscaping, planting, or hardscaping — on properties of any size.',
+    desc: 'Proper grading is the foundation of every successful outdoor project. We level uneven terrain, correct drainage slopes, and prepare sites for construction, landscaping, planting, or hardscaping on properties of any size.',
     features: ['Rough & finish grading', 'Slope correction & terracing', 'Site prep for construction or planting', 'Drainage swale shaping'],
   },
   {
@@ -32,7 +32,7 @@ const services = [
     title: 'Fencing Installation & Repairs',
     tag: 'Wood · Chain Link · Ranch Rail',
     color: 'bg-green-50 text-forest',
-    desc: 'We install and repair fencing for residential properties, ranches, and commercial sites. Whether you need a clean wood privacy fence, a ranch rail perimeter, or chain link for a commercial lot — we build it right and built to last.',
+    desc: 'We install and repair fencing for residential properties, ranches, and commercial sites. Whether you need a clean wood privacy fence, a ranch rail perimeter, or chain link for a commercial lot, we build it right and built to last.',
     features: ['Wood privacy & picket fencing', 'Ranch rail & split rail fencing', 'Chain link installation & repair', 'Post replacement & fence restoration'],
   },
   {
@@ -40,7 +40,7 @@ const services = [
     title: 'Land & Landscape Cleanup',
     tag: 'One-Time · Seasonal · Ongoing',
     color: 'bg-emerald-50 text-emerald-800',
-    desc: 'A clean property is a healthy property. We handle comprehensive land and landscape cleanups — from overgrown yards and weedy lots to post-storm debris and seasonal maintenance — leaving your grounds looking sharp and well-kept.',
+    desc: 'A clean property is a healthy property. We handle comprehensive land and landscape cleanups, from overgrown yards and weedy lots to post-storm debris and seasonal maintenance, leaving your grounds looking sharp and well-kept.',
     features: ['Overgrown yard cleanup & reset', 'Weed removal & bare-ground prep', 'Post-storm debris clearance', 'Seasonal maintenance visits'],
   },
   {
@@ -48,7 +48,7 @@ const services = [
     title: 'Brush & Debris Removal',
     tag: 'Fire Safety · Lot Clearing · Haul-Off',
     color: 'bg-orange-50 text-orange-700',
-    desc: 'Overgrown brush is a fire hazard, an eyesore, and a barrier to using your land. We clear brush, pile debris, chip where appropriate, and haul everything off — leaving your property clean, accessible, and safer.',
+    desc: 'Overgrown brush is a fire hazard, an eyesore, and a barrier to using your land. We clear brush, pile debris, chip where appropriate, and haul everything off, leaving your property clean, accessible, and safer.',
     features: ['Brush cutting & clearing', 'Pile removal & haul-off', 'Chipping & on-site mulching', 'Fire hazard reduction clearing'],
   },
   {
@@ -56,7 +56,7 @@ const services = [
     title: 'Property Maintenance',
     tag: 'Ongoing · Scheduled · On-Call',
     color: 'bg-slate-50 text-slate-700',
-    desc: 'Keep your property in top condition without the hassle. We offer scheduled maintenance programs for residential, agricultural, and commercial properties — so your land stays clean, functional, and well-maintained every season.',
+    desc: 'Keep your property in top condition without the hassle. We offer scheduled maintenance programs for residential, agricultural, and commercial properties, so your land stays clean, functional, and well-maintained every season.',
     features: ['Scheduled maintenance programs', 'Mowing, edging & trimming', 'Irrigation system checks', 'General upkeep & small repairs'],
   },
   {
@@ -64,7 +64,7 @@ const services = [
     title: 'Lot Clearing',
     tag: 'Vacant Lots · Acreage · Development Prep',
     color: 'bg-rose-50 text-rose-700',
-    desc: 'Ready to use your land? We clear vacant lots, raw acreage, and development sites — removing brush, debris, overgrowth, and obstacles so the land is clean, level-ready, and prepared for whatever comes next.',
+    desc: 'Ready to use your land? We clear vacant lots, raw acreage, and development sites, removing brush, debris, overgrowth, and obstacles so the land is clean, level-ready, and prepared for whatever comes next.',
     features: ['Vacant lot full clearing', 'Raw acreage preparation', 'Stump & root removal', 'Pre-development site clearing'],
   },
   {
@@ -72,7 +72,7 @@ const services = [
     title: 'Drainage Solutions',
     tag: 'French Drains · Swales · Runoff Control',
     color: 'bg-cyan-50 text-cyan-700',
-    desc: 'Poor drainage causes erosion, flooding, and long-term property damage. We assess your drainage problems and install effective solutions — including French drains, surface swales, and grading corrections — to move water away from where it hurts.',
+    desc: 'Poor drainage causes erosion, flooding, and long-term property damage. We assess your drainage problems and install effective solutions like French drains, surface swales, and grading corrections to move water away from where it hurts.',
     features: ['French drain installation', 'Surface & channel drains', 'Grading for water diversion', 'Erosion control measures'],
   },
 ];
@@ -137,9 +137,9 @@ export default function ClientSite() {
       {/* HERO */}
       <section
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
-        style={{ background: 'linear-gradient(160deg, #0f2a1c 0%, #1B4332 45%, #1e3a2a 100%)' }}
+        style={{ background: 'linear-gradient(150deg, #0f271c 0%, #1B4332 50%, #334155 100%)' }}
       >
-        <div className="absolute inset-0 opacity-20"
+        <div className="absolute inset-0 opacity-[0.08]"
           style={{
             backgroundImage: 'url(https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80)',
             backgroundSize: 'cover',
@@ -147,7 +147,7 @@ export default function ClientSite() {
             transform: `translateY(${parallax}px) scale(1.1)`,
             willChange: 'transform',
           }} />
-        <div className="absolute inset-0 bg-gradient-to-br from-forest/90 via-forest/75 to-harvest/20" />
+        <div className="absolute inset-0 bg-gradient-to-br from-forest/90 via-forest/70 to-steel-dark/50" />
 
         <div className="relative z-10 text-center max-w-5xl mx-auto px-6 pt-20 pb-16">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 text-sm text-white/80 mb-8">
@@ -155,14 +155,14 @@ export default function ClientSite() {
             Family-Owned &nbsp;·&nbsp; Licensed &amp; Insured &nbsp;·&nbsp; Central Coast
           </div>
 
-          <h1 className="font-serif text-5xl md:text-7xl font-bold text-white leading-tight text-balance mb-6">
-            Land Preparation &<br />
-            <span className="text-harvest">Property Improvement</span><br />
+          <h1 className="font-display uppercase text-5xl md:text-7xl font-bold text-white leading-[0.95] tracking-tight text-balance mb-6">
+            Land Preparation &amp;<br />
+            <span className="text-harvest-light">Property Improvement</span><br />
             You Can Count On
           </h1>
 
           <p className="text-lg md:text-xl text-white/75 max-w-2xl mx-auto mb-4 leading-relaxed">
-            Grading, irrigation, fencing, lot clearing, drainage, and full property maintenance —
+            Grading, irrigation, fencing, lot clearing, drainage, and full property maintenance
             for residential, agricultural, and commercial properties across the Central Coast.
           </p>
 
@@ -210,7 +210,7 @@ export default function ClientSite() {
           </h2>
           <p className="text-gray-500 text-lg leading-relaxed">
             We provide reliable land preparation and property improvement services for residential, agricultural, and commercial properties.
-            From ground leveling and irrigation systems to fencing installation and landscape cleanup —
+            From ground leveling and irrigation systems to fencing installation and landscape cleanup,
             we help keep your property functional, clean, and well-maintained.
           </p>
         </div>
@@ -224,7 +224,7 @@ export default function ClientSite() {
           </div>
           <h2 className="section-title text-center">What We Do</h2>
           <p className="section-subtitle mx-auto text-center">
-            From raw land to finished property — we handle every step of the outdoor improvement process.
+            From raw land to finished property, we handle every step of the outdoor improvement process.
           </p>
         </Reveal>
         <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
@@ -316,10 +316,10 @@ export default function ClientSite() {
             </div>
             <h2 className="section-title mb-5">Family-Owned. Community Trusted. Built for the Central Coast.</h2>
             <p className="text-gray-500 leading-relaxed mb-4">
-              We are a family-owned land preparation and property improvement company rooted in Lompoc and serving the surrounding Central Coast. We've built our reputation one property at a time — doing honest work, showing up on time, and leaving every job site better than we found it.
+              We are a family-owned land preparation and property improvement company rooted in Lompoc and serving the surrounding Central Coast. We've built our reputation one property at a time, doing honest work, showing up on time, and leaving every job site better than we found it.
             </p>
             <p className="text-gray-500 leading-relaxed mb-6">
-              Whether you need a vacant lot cleared, a drainage problem solved, an irrigation system installed, or ongoing property maintenance for a residential home, ranch, or commercial site — we have the equipment, the experience, and the work ethic to get it done right.
+              Whether you need a vacant lot cleared, a drainage problem solved, an irrigation system installed, or ongoing property maintenance for a residential home, ranch, or commercial site, we have the equipment, the experience, and the work ethic to get it done right.
             </p>
             <div className="grid grid-cols-2 gap-4">
               {[
@@ -369,7 +369,7 @@ export default function ClientSite() {
               </div>
               <h3 className="font-serif text-xl font-semibold text-white mb-3">Proudly Serving Our Neighbors</h3>
               <p className="text-white/50 text-sm max-w-sm mx-auto leading-relaxed">
-                Client reviews from across the valley coming soon. We're focused on delivering outstanding results — the stories will follow.
+                Client reviews from across the valley coming soon. We're focused on delivering outstanding results, and the stories will follow.
               </p>
             </div>
           ) : (

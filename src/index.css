@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -9,9 +9,13 @@
   html { scroll-behavior: smooth; }
   body {
     font-family: 'Inter', system-ui, sans-serif;
-    background-color: #F4F1EA;
-    color: #212529;
+    background-color: #F5F6F4;
+    color: #1E293B;
     margin: 0;
+  }
+  /* Condensed display headers: tighten tracking for a crisp, modern look. */
+  .font-serif, .font-display {
+    letter-spacing: -0.01em;
   }
   #root {
     width: 100%;
@@ -90,4 +94,4 @@
 
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: #f1f1f1; }
-::-webkit-scrollbar-thumb { background: #c5a059; border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: #B5542B; border-radius: 3px; }

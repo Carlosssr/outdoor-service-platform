@@ -117,7 +117,7 @@ export default function AnalyticsView() {
                         <span className="text-xs font-medium">{src.convRate}%</span>
                       </div>
                     </td>
-                    <td className="table-td text-right text-gray-500">{src.spend > 0 ? fmt(src.spend) : '—'}</td>
+                    <td className="table-td text-right text-gray-500">{src.spend > 0 ? fmt(src.spend) : 'N/A'}</td>
                     <td className="table-td text-right font-semibold text-forest">{fmt(src.revenue)}</td>
                     <td className="table-td text-right">
                       <span className={`badge ${roi === '∞' || Number(roi) > 10 ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'}`}>
@@ -159,7 +159,7 @@ export default function AnalyticsView() {
               onChange={e => setSliderVal(Number(e.target.value))}
               className="w-full h-2 rounded-full appearance-none cursor-pointer"
               style={{
-                background: `linear-gradient(to right, #1B4332 0%, #1B4332 ${sliderVal}%, #C5A059 ${sliderVal}%, #C5A059 100%)`
+                background: `linear-gradient(to right, #1B4332 0%, #1B4332 ${sliderVal}%, #B5542B ${sliderVal}%, #B5542B 100%)`
               }}
             />
             <div className="flex justify-between mt-2">

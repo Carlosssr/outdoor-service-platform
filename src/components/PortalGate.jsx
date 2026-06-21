@@ -9,7 +9,7 @@ import { Lock, ArrowLeft } from 'lucide-react';
 const SESSION_KEY = 'osp_portal_unlocked';
 
 // Lightweight obfuscation so the passphrase isn't sitting in plaintext in the
-// bundle. This is NOT cryptographic security — just raises the bar slightly.
+// bundle. This is NOT cryptographic security, it just raises the bar slightly.
 const EXPECTED = 'ccos-ops-2027'; // change this to your chosen passphrase
 
 export default function PortalGate({ children }) {

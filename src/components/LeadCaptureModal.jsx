@@ -6,7 +6,7 @@ import { LOCATION_OPTIONS, SERVICE_OPTIONS, HIGH_VALUE_LOCATIONS } from '../data
 const emptyForm = {
   name: '', contact: '', email: '', phone: '',
   location: '', service: '', notes: '', source: 'Website Form',
-  company: '', // honeypot — real users never fill this
+  company: '', // honeypot field; real users never fill this
 };
 
 const LIMITS = { name: 80, email: 120, phone: 25, notes: 1000 };
@@ -87,7 +87,7 @@ export default function LeadCaptureModal({ isOpen, onClose }) {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Honeypot — visually hidden, bots fill it, humans don't */}
+          {/* Honeypot field, visually hidden. Bots fill it, humans don't */}
           <input
             type="text" tabIndex={-1} autoComplete="off"
             value={form.company} onChange={set('company')}
