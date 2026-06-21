@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import ClientNav from '../components/ClientNav';
 import LeadCaptureModal from '../components/LeadCaptureModal';
+import { Reveal, ScrollProgress, useParallax } from '../components/Motion';
+import { useInView, useCountUp } from '../hooks/useInView';
 import {
   Shovel, Droplets, Fence, Leaf, Trash2, Star, ChevronLeft, ChevronRight,
   MapPin, Phone, Mail, Shield, Award, Users, CheckCircle, Waves, Wrench, LayoutGrid
@@ -101,10 +103,23 @@ const stats = [
   { value: '3 Counties', label: 'Central Coast Coverage' },
 ];
 
+// Counts up the numeric portion of a stat (e.g. "500+" -> animates to 500, keeps "+").
+// Non-numeric stats (e.g. "Licensed") render as-is.
+function StatValue({ value, animate }) {
+  const match = /^(\d+)(.*)$/.exec(value);
+  const target = match ? parseInt(match[1], 10) : 0;
+  const suffix = match ? match[2] : '';
+  const count = useCountUp(target, { start: animate });
+  if (!match) return <>{value}</>;
+  return <>{count}{suffix}</>;
+}
+
 export default function ClientSite() {
   const [estimateOpen, setEstimateOpen] = useState(false);
   const [galleryFilter, setGalleryFilter] = useState('all');
   const [testimonialIdx, setTestimonialIdx] = useState(0);
+  const parallax = useParallax(0.25);
+  const [statsRef, statsInView] = useInView({ threshold: 0.4 });
 
   const filteredGallery = galleryFilter === 'all'
     ? galleryItems
@@ -115,6 +130,7 @@ export default function ClientSite() {
 
   return (
     <div className="min-h-screen bg-sand font-sans">
+      <ScrollProgress />
       <ClientNav onEstimateClick={() => setEstimateOpen(true)} />
       <LeadCaptureModal isOpen={estimateOpen} onClose={() => setEstimateOpen(false)} />
 
@@ -124,7 +140,13 @@ export default function ClientSite() {
         style={{ background: 'linear-gradient(160deg, #0f2a1c 0%, #1B4332 45%, #1e3a2a 100%)' }}
       >
         <div className="absolute inset-0 opacity-20"
-          style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            transform: `translateY(${parallax}px) scale(1.1)`,
+            willChange: 'transform',
+          }} />
         <div className="absolute inset-0 bg-gradient-to-br from-forest/90 via-forest/75 to-harvest/20" />
 
         <div className="relative z-10 text-center max-w-5xl mx-auto px-6 pt-20 pb-16">
@@ -161,10 +183,12 @@ export default function ClientSite() {
             </a>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16">
+          <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16">
             {stats.map(s => (
-              <div key={s.label} className="bg-white/8 backdrop-blur-sm border border-white/15 rounded-xl p-4 text-center">
-                <div className="text-2xl font-bold text-harvest font-serif">{s.value}</div>
+              <div key={s.label} className="bg-white/8 backdrop-blur-sm border border-white/15 rounded-xl p-4 text-center transition-transform duration-300 hover:-translate-y-1 hover:bg-white/12">
+                <div className="text-2xl font-bold text-harvest font-serif">
+                  <StatValue value={s.value} animate={statsInView} />
+                </div>
                 <div className="text-xs text-white/60 mt-1 font-medium">{s.label}</div>
               </div>
             ))}
@@ -194,7 +218,7 @@ export default function ClientSite() {
 
       {/* SERVICES */}
       <section id="services" className="py-20 lg:py-28 px-4 max-w-7xl mx-auto">
-        <div className="text-center mb-14">
+        <Reveal className="text-center mb-14">
           <div className="inline-flex items-center gap-2 bg-forest/10 text-forest text-xs font-bold px-3 py-1.5 rounded-full mb-4 tracking-wider uppercase">
             <Award size={12} /> Our Services
           </div>
@@ -202,10 +226,10 @@ export default function ClientSite() {
           <p className="section-subtitle mx-auto text-center">
             From raw land to finished property — we handle every step of the outdoor improvement process.
           </p>
-        </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6 animate-stagger">
-          {services.map((svc) => (
-            <div key={svc.title} className="card hover:shadow-md transition-shadow duration-300 group">
+        </Reveal>
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+          {services.map((svc, idx) => (
+            <Reveal key={svc.title} delay={idx * 90} className="card hover:shadow-md transition-all duration-300 hover:-translate-y-1 group">
               <div className="p-6 md:p-8">
                 <div className="flex items-start gap-4 mb-4">
                   <div className={`w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 ${svc.color}`}>
@@ -232,7 +256,7 @@ export default function ClientSite() {
                   Get an estimate →
                 </button>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -262,9 +286,9 @@ export default function ClientSite() {
             ))}
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 animate-stagger">
-            {filteredGallery.map(item => (
-              <div key={item.id} className="group relative rounded-xl overflow-hidden aspect-[4/3] bg-gray-100 shadow-sm hover:shadow-lg transition-shadow">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {filteredGallery.map((item, idx) => (
+              <Reveal key={item.id} delay={idx * 60} className="group relative rounded-xl overflow-hidden aspect-[4/3] bg-gray-100 shadow-sm hover:shadow-lg transition-shadow">
                 <img
                   src={item.img}
                   alt={item.label}
@@ -277,7 +301,7 @@ export default function ClientSite() {
                   <div className="text-white font-semibold text-sm">{item.label}</div>
                   <div className="text-white/70 text-xs mt-0.5">{item.desc}</div>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

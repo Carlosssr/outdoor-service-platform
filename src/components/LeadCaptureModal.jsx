@@ -6,22 +6,56 @@ import { LOCATION_OPTIONS, SERVICE_OPTIONS, HIGH_VALUE_LOCATIONS } from '../data
 const emptyForm = {
   name: '', contact: '', email: '', phone: '',
   location: '', service: '', notes: '', source: 'Website Form',
+  company: '', // honeypot — real users never fill this
 };
+
+const LIMITS = { name: 80, email: 120, phone: 25, notes: 1000 };
+
+const clean = (str, max) => str.replace(/[<>]/g, '').slice(0, max).trimStart();
+const isValidEmail = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
 
 export default function LeadCaptureModal({ isOpen, onClose }) {
   const { addLead } = useApp();
   const [form, setForm] = useState(emptyForm);
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
 
-  const set = (field) => (e) => setForm(prev => ({ ...prev, [field]: e.target.value }));
+  const set = (field) => (e) => {
+    const max = LIMITS[field];
+    const raw = e.target.value;
+    const val = max ? clean(raw, max) : raw;
+    setForm(prev => ({ ...prev, [field]: val }));
+    setErrors(prev => ({ ...prev, [field]: undefined }));
+  };
+
+  const validate = () => {
+    const errs = {};
+    if (!form.name.trim()) errs.name = 'Name is required.';
+    if (!form.email.trim()) errs.email = 'Email is required.';
+    else if (!isValidEmail(form.email)) errs.email = 'Enter a valid email address.';
+    if (!form.location) errs.location = 'Select a location.';
+    if (!form.service) errs.service = 'Select a service.';
+    setErrors(errs);
+    return Object.keys(errs).length === 0;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Honeypot: if filled, silently drop (bot submission).
+    if (form.company) { setSubmitted(true); return; }
+    if (!validate()) return;
     const estimatedValue = SERVICE_OPTIONS.indexOf(form.service) <= 1 ? 12000 :
       SERVICE_OPTIONS.indexOf(form.service) === 2 ? 22000 :
       SERVICE_OPTIONS.indexOf(form.service) === 3 ? 35000 : 8000;
     addLead({
-      ...form,
+      name: form.name.trim(),
+      contact: form.contact.trim(),
+      email: form.email.trim(),
+      phone: form.phone.trim(),
+      location: form.location,
+      service: form.service,
+      notes: form.notes.trim(),
+      source: form.source,
       estimatedValue,
       status: 'New',
       highValue: HIGH_VALUE_LOCATIONS.includes(form.location),
@@ -32,6 +66,7 @@ export default function LeadCaptureModal({ isOpen, onClose }) {
   const handleClose = () => {
     setForm(emptyForm);
     setSubmitted(false);
+    setErrors({});
     onClose();
   };
 
@@ -52,12 +87,19 @@ export default function LeadCaptureModal({ isOpen, onClose }) {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Honeypot — visually hidden, bots fill it, humans don't */}
+          <input
+            type="text" tabIndex={-1} autoComplete="off"
+            value={form.company} onChange={set('company')}
+            className="absolute opacity-0 h-0 w-0 -z-10" aria-hidden="true"
+          />
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-semibold text-gray-600 mb-1.5">Full Name *</label>
               <input required value={form.name} onChange={set('name')}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest"
+                className={`w-full border rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-forest/30 ${errors.name ? 'border-red-400' : 'border-gray-200 focus:border-forest'}`}
                 placeholder="John Smith" />
+              {errors.name && <p className="text-red-500 text-[11px] mt-1">{errors.name}</p>}
             </div>
             <div>
               <label className="block text-xs font-semibold text-gray-600 mb-1.5">Phone Number</label>
@@ -69,8 +111,9 @@ export default function LeadCaptureModal({ isOpen, onClose }) {
           <div>
             <label className="block text-xs font-semibold text-gray-600 mb-1.5">Email Address *</label>
             <input required type="email" value={form.email} onChange={set('email')}
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest"
+              className={`w-full border rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-forest/30 ${errors.email ? 'border-red-400' : 'border-gray-200 focus:border-forest'}`}
               placeholder="you@example.com" />
+            {errors.email && <p className="text-red-500 text-[11px] mt-1">{errors.email}</p>}
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
@@ -96,7 +139,7 @@ export default function LeadCaptureModal({ isOpen, onClose }) {
               className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest resize-none"
               placeholder="Tell us about your property and what you're looking to accomplish..." />
           </div>
-          <p className="text-xs text-gray-400">Licensed C-27 / D-49 • Serving the Central Coast since day one.</p>
+          <p className="text-xs text-gray-400">Licensed &amp; insured • Family-owned • Serving the Central Coast since day one.</p>
           <button type="submit" className="w-full btn-primary text-center">
             Submit Estimate Request
           </button>
