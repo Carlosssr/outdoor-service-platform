@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { MapPin, Camera } from 'lucide-react';
 import { NEIGHBORHOODS, publicProjects } from '../data/projects';
+import ProjectSpecCard from './ProjectSpecCard';
 
 // Neighborhood-filtered social proof. Pins are positioned as percentages on a
 // stylized area panel, so there's no Google Maps JS payload and no layout shift.
@@ -9,6 +10,7 @@ import { NEIGHBORHOODS, publicProjects } from '../data/projects';
 
 export default function LocalProjectMap() {
   const [active, setActive] = useState('All');
+  const [selectedProject, setSelectedProject] = useState(null);
   const projects = useMemo(() => publicProjects(), []);
 
   const visible = useMemo(
@@ -82,8 +84,8 @@ export default function LocalProjectMap() {
                   return (
                     <button
                       key={p.id}
-                      onClick={() => setActive(p.neighborhood)}
-                      aria-label={`${p.title} in ${p.neighborhood}`}
+                      onClick={() => setSelectedProject(p)}
+                      aria-label={`View details: ${p.title} in ${p.neighborhood}`}
                       className="absolute transition-all duration-300"
                       style={{
                         left: `${p.mapX}%`,
@@ -105,10 +107,11 @@ export default function LocalProjectMap() {
               {/* Synced project cards */}
               <ul className="grid grid-cols-2 content-start gap-4">
                 {visible.map((p) => (
-                  <li
-                    key={p.id}
-                    className="animate-fade-in overflow-hidden rounded-xl border border-slate-700 bg-slate-800"
-                  >
+                  <li key={p.id} className="animate-fade-in">
+                    <button
+                      onClick={() => setSelectedProject(p)}
+                      className="block w-full overflow-hidden rounded-xl border border-slate-700 bg-slate-800 text-left transition-colors hover:border-harvest focus:outline-none focus-visible:ring-2 focus-visible:ring-harvest"
+                    >
                     {p.images.after ? (
                       <img
                         src={p.images.after}
@@ -126,6 +129,7 @@ export default function LocalProjectMap() {
                       <p className="text-sm font-semibold text-white">{p.title}</p>
                       <p className="text-xs text-slate-400">{p.categories[0]}</p>
                     </div>
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -133,6 +137,7 @@ export default function LocalProjectMap() {
           </>
         )}
       </div>
+      <ProjectSpecCard project={selectedProject} onClose={() => setSelectedProject(null)} />
     </section>
   );
 }

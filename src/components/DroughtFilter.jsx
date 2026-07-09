@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Droplets, Sprout, Grid3x3, Trees, Wrench, Camera } from 'lucide-react';
 import { CATEGORIES, publicProjects } from '../data/projects';
+import ProjectSpecCard from './ProjectSpecCard';
 
 // Water-smart portfolio filter. Multi-select (OR semantics): an empty selection
 // shows everything; picking chips narrows to projects matching ANY chosen approach.
@@ -17,6 +18,7 @@ const CATEGORY_ICONS = {
 
 export default function DroughtFilter() {
   const [selected, setSelected] = useState(() => new Set());
+  const [selectedProject, setSelectedProject] = useState(null);
   const projects = useMemo(() => publicProjects(), []);
 
   const toggle = (c) =>
@@ -94,10 +96,11 @@ export default function DroughtFilter() {
 
             <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {visible.map((it) => (
-                <li
-                  key={it.id}
-                  className="group animate-fade-in overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm"
-                >
+                <li key={it.id} className="animate-fade-in">
+                  <button
+                    onClick={() => setSelectedProject(it)}
+                    className="group block w-full overflow-hidden rounded-2xl border border-gray-200 bg-white text-left shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-harvest"
+                  >
                   {it.images.after ? (
                     <div className="overflow-hidden">
                       <img
@@ -123,6 +126,7 @@ export default function DroughtFilter() {
                       ))}
                     </ul>
                   </div>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -133,6 +137,7 @@ export default function DroughtFilter() {
           </>
         )}
       </div>
+      <ProjectSpecCard project={selectedProject} onClose={() => setSelectedProject(null)} />
     </section>
   );
 }
