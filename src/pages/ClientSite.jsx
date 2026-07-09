@@ -205,7 +205,7 @@ export default function ClientSite() {
       {/* SHORT INTRO */}
       <section className="py-14 px-4 bg-white border-b border-gray-100">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="font-serif text-2xl md:text-3xl font-bold text-forest mb-3">
+          <h2 className="font-serif uppercase tracking-tight text-2xl md:text-3xl font-bold text-forest mb-3">
             Land Improvement &amp; Property Maintenance
           </h2>
           <p className="text-gray-500 text-lg leading-relaxed">
@@ -360,7 +360,7 @@ export default function ClientSite() {
           <div className="inline-flex items-center gap-2 bg-white/10 text-white/80 text-xs font-bold px-3 py-1.5 rounded-full mb-6 tracking-wider uppercase">
             <Star size={12} className="text-harvest" /> Client Testimonials
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-white mb-10">What Our Neighbors Say</h2>
+          <h2 className="font-serif uppercase tracking-tight text-3xl md:text-4xl font-bold text-white mb-10">What Our Neighbors Say</h2>
 
           {testimonials.length === 0 ? (
             <div className="bg-white/5 border border-white/10 rounded-2xl px-8 py-12">
