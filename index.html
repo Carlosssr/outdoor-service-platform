@@ -11,6 +11,57 @@
     />
     <meta name="description" content="Central Coast Outdoor Services: family-owned land preparation and property improvement. Ground leveling, irrigation, fencing, lot clearing, drainage, and property maintenance serving Lompoc, the Santa Ynez Valley, and the greater Central Coast." />
     <title>Central Coast Outdoor Services | Lompoc &amp; Santa Ynez Valley</title>
+    <!--
+      Local business structured data (LandscapingBusiness).
+      HONESTY RULES:
+      - aggregateRating was deliberately REMOVED and must only be reintroduced
+        from real, verifiable review data (e.g. Google Business Profile reviews).
+        Fabricated ratings risk manual action from search engines.
+      - telephone/url are the same placeholders used in site copy; replace both
+        together when the real number/domain are live.
+      JSON-LD is inert data (never executed by the browser), so the CSP
+      script-src policy above does not affect crawlers reading it.
+    -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LandscapingBusiness",
+      "@id": "https://carlosssr.github.io/outdoor-service-platform/#business",
+      "name": "Central Coast Outdoor Services",
+      "url": "https://carlosssr.github.io/outdoor-service-platform/",
+      "telephone": "+1-805-555-0100",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Lompoc",
+        "addressRegion": "CA",
+        "addressCountry": "US"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": 34.6391, "longitude": -120.4579 },
+      "areaServed": [
+        { "@type": "City", "name": "Lompoc, CA" },
+        { "@type": "City", "name": "Vandenberg Village, CA" },
+        { "@type": "City", "name": "Mission Hills, CA" },
+        { "@type": "City", "name": "Buellton, CA" },
+        { "@type": "City", "name": "Solvang, CA" },
+        { "@type": "City", "name": "Santa Ynez, CA" }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Land Preparation & Property Improvement Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ground Leveling & Site Grading" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Irrigation System Installation & Repair" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fencing Installation & Repairs" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Land & Landscape Cleanup" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Brush & Debris Removal" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Lot Clearing" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Drainage Solutions" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Property Maintenance" } }
+        ]
+      }
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
