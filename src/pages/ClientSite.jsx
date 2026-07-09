@@ -2,6 +2,8 @@ import { useState } from 'react';
 import ClientNav from '../components/ClientNav';
 import LeadCaptureModal from '../components/LeadCaptureModal';
 import { Reveal, ScrollProgress, useParallax } from '../components/Motion';
+import LocalProjectMap from '../components/LocalProjectMap';
+import DroughtFilter from '../components/DroughtFilter';
 import { useInView, useCountUp } from '../hooks/useInView';
 import {
   Shovel, Droplets, Fence, Leaf, Trash2, Star, ChevronLeft, ChevronRight,
@@ -306,6 +308,12 @@ export default function ClientSite() {
           </div>
         </div>
       </section>
+
+      {/* LOCAL PROJECT MAP */}
+      <LocalProjectMap />
+
+      {/* WATER-SMART PORTFOLIO FILTER */}
+      <DroughtFilter />
 
       {/* ABOUT */}
       <section id="about" className="py-20 lg:py-28 px-4 max-w-7xl mx-auto">
